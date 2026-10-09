@@ -2,18 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+// Import Product Model từ thư mục models riêng
+const Product = require('./models/Product');
+
 const app = express();
 app.use(express.json());
-
-// Schema & Model Product (pid, pname, price, quantity)
-const productSchema = new mongoose.Schema({
-  pid: { type: String, required: true, unique: true },
-  pname: { type: String, required: true },
-  price: { type: Number, required: true },
-  quantity: { type: Number, required: true }
-});
-
-const Product = mongoose.model('Product', productSchema);
 
 // Kết nối MongoDB Container
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/productdb';
